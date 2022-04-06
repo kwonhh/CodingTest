@@ -1,3 +1,5 @@
+
+
 def solution(numbers, target):
     answer = 0
     graph = []
@@ -20,3 +22,4 @@ def solution(numbers, target):
             answer += 1
 
     return answer
+
