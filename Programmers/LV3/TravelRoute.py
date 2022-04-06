@@ -1,5 +1,5 @@
 
-
+# 미해결
 def solution(tickets):
     used = []
     graph = ["ICN"]
@@ -20,4 +20,28 @@ def solution(tickets):
 
     return answer
 
-# 미해결
+
+# 재시도
+def solution(tickets):
+    answer = []
+    visit = []
+    graph = ["ICN"]
+    graph_stack = []
+    while len(graph) != 0:
+        depart = graph.pop()
+        answer.append(depart)
+        if len(answer) == len(tickets) + 1:
+            break
+        if len(graph_stack) != 0:
+            visit.append(graph_stack.pop())
+        cand = []
+        candList = []
+        for t in tickets:
+            if t[0] == depart and t not in visit:
+                cand.append(t[1])
+                graph_stack.append(t)
+        cand.sort(reverse=True)
+        graph_stack.sort(reverse=True)
+        graph += cand
+        #print(graph)
+    return answer
