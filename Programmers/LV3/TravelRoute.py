@@ -1,5 +1,5 @@
 
-# 미해결
+# 시도1
 def solution(tickets):
     used = []
     graph = ["ICN"]
@@ -21,7 +21,7 @@ def solution(tickets):
     return answer
 
 
-# 재시도
+# 시도2
 def solution(tickets):
     answer = []
     visit = []
