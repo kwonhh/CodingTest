@@ -45,3 +45,36 @@ def solution(tickets):
         graph += cand
         #print(graph)
     return answer
+
+# 시도3
+def DFS(tickets, ticket, visit):
+    print("ticket = ", ticket, "  Visit = ", visit)
+    visit.append(ticket)
+    # if len(visit) == len(ticket):
+    # print(visit)
+    departure = ticket[1]
+    cand = []
+    for t in tickets:
+        if t[0] == departure:
+            if t not in visit:
+                cand.append(t)
+    cand.sort(reverse=True)
+    while len(cand) != 0:
+        NewTicket = cand.pop()
+        DFS(tickets, NewTicket, visit)
+    return visit
+
+
+def solution(tickets):
+    answer = []
+    visit = []
+    answer_tmp = []
+    for t in tickets:
+        if t[0] == "ICN":
+            answer_tmp = DFS(tickets, t, visit)
+    print(answer_tmp)
+    for at in answer_tmp:
+        answer.append(at[0])
+        if at == answer_tmp[-1]:
+            answer.append(at[1])
+    return answer
