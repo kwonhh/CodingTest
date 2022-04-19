@@ -85,9 +85,6 @@ def bfs_solution(n, m, board):
             return -1
 
         ans = max(ans, max(b))      # b는 board의 각 행, 각 행마다 최댓값을 찾고 이 값을 ans와 비교하여 더 큰 값을 ans에 담기
-    print("\n\n\n\bb")
-    for bb in board:
-        print(bb)
     return ans-1
 
 
