@@ -15,40 +15,13 @@ def dfs(numbers, comb, res):
                     for c in comb:
                         print(c, end = ' ')
                     print()
-                #for c in comb:
-                #    print(c, end=' ')
-                #print()
+
                     res.append(comb)
-                #comb.sort()
-                #if comb not in res:
-                #    res.append(comb)
                 return
             #11째 줄이 문제였음, 재귀 종료 조건을 만족하고 원래 상태로 돌아오면 comb에 이미 이전의 n이 append되어있으니까
             # 1,2, .. / 1,3... / 1,4... 등 순차적으로 진행된게 아니고 1번만 실행
             dfs(numbers, comb + [n], res)
 
-
-def dfs_solution(numbers, line, res):
-    print("curr = ", line[-1], " line = ", line, "  res = ", res)
-    #if len(line) == 6:
-        #line.sort()
-        #print(line)
-        #return line
-        #res.append(line)
-
-    print(line)
-    for n in numbers:
-        if n not in line:
-            line.append(n)
-
-            dfs_solution(numbers, line, res)
-            print("dfs 이후 : line = ", line, " n = ", n)
-            if len(line) == 6:
-                line.sort()
-                res.append(line)
-                return line
-            if len(line) > 6:
-                return line
 def lotto_solution(permutation, numbers):
     res = []
     for p in permutation:
@@ -81,6 +54,7 @@ if __name__ == '__main__':
         permutation = list(set(permutations(p)))
         #lotto_solution(permutation, numbers)
     '''
+
     while True:
         input = sys.stdin.readline()
         numbers = list(map(int, input.split()))
