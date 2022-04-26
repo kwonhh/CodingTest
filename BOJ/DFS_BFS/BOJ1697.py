@@ -6,7 +6,7 @@ def solution(subin, dest):
     q = deque()
     q.append(subin)
     position = [0 for _ in range(dest*5)]
-    position[subin] = 1
+    position[subin] =  1
     while q:
         curr = q.popleft()
         if position[curr] == dest:
