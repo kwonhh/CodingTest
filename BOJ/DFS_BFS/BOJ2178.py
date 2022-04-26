@@ -20,6 +20,7 @@ def find_route(m, n, graph, visit):
                 if visit[dy][dx] == 0 and graph[dy][dx] != 0:
                     stk.append([dy, dx])
                     visit[dy][dx] = visit[posy][posx]+1
+                    #새로 탐색한 연결 지점에 대해 n+1 번째 방문임을 대입
 
 
 if __name__ == '__main__':
