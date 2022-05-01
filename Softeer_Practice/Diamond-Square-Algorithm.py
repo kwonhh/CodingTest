@@ -1,3 +1,5 @@
+#https://softeer.ai/practice/info.do?eventIdx=1&psProblemId=413
+
 import sys
 
 def loop_solution(iter):
