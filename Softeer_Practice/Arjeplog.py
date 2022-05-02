@@ -37,8 +37,57 @@ def melting_time(x, y, matx, sec):
     else :
         print("sec = ",sec+1)
 
+def melt_time(x, y, graph, second):
+    # 굳이 매번 전체 행렬을 탐색할 이유가 없을 것 같아서
+    # 얼음의 좌표 찾을 때만 전체 행렬 돌면서 각 좌표를 덱에 담아주고,
+    # 반복문을 통해 그 덱만 순환하도록 구현해봄
+
+    # 얼음이 존재하는 좌표 탐색
+    ice = deque()
+    melt = []
+    for yy in range(y):
+        for xx in range(x):
+            if graph[yy][xx] == 1:
+                ice.append((yy, xx))
+    new_ice = deque()
+    while len(ice) != 0:
+        curry, currx = ice.popleft()
+        edge = 0
+        for d in range(4):
+            amby = curry+dy[d]
+            ambx = currx+dx[d]
+            if amby >= 0 and ambx >= 0 and amby < y and ambx < x:
+                if graph[amby][ambx] == 0 and (amby, ambx) not in melt:
+                    edge += 1
+                else:
+                    continue
+                ambyy = amby + dy[d]
+                ambxx = ambx + dx[d]
+                if ambyy >= 0 and ambxx >= 0 and ambyy < y and ambxx < x:
+                    if graph[ambyy][ambxx] == 1 and (ambyy, ambxx) not in melt:
+                        edge -= 1
+
+            #print("new ice", new_ice)
+        if edge >= 2:
+            print("(curry, currx) = (", curry, " , ", currx, ")")
+            graph[curry][currx] = 0
+            melt.append((curry, currx))
+        else :
+            new_ice.append((curry, currx))
+        if len(ice) == 0:
+            print("new ice ", new_ice)
+            for g in graph:
+                print(g)
+            print(new_ice)
+            ice.extend(new_ice)
+            new_ice.clear()
+            melt.clear()
+            second += 1
+    print("second :: ", second)
+
 y,x = map(int, sys.stdin.readline().split(' '))
 matx = [list(map(int, sys.stdin.readline().split(' '))) for _ in range(y)]
 
 sec = 0
-melting_time(x, y, matx, sec)
+#melting_time(x, y, matx, sec)
+melt_time(x, y, matx, sec)
