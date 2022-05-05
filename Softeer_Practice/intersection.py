@@ -36,6 +36,7 @@ def solution():
         idx_sum = 0
         stk_val = 0
 
+
         for s in range(4):
             if stk[s] != 0:
                 stk_val += 1
