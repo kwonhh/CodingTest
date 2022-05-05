@@ -1,43 +1,63 @@
 #https://softeer.ai/practice/info.do?eventIdx=1&psProblemId=403
 import sys
+'''
+ans = 0
+min_idx = -1
+min = 10000
+num_of_line = int(sys.stdin.readline().rstrip())
+tmp = [[]]*2
+idx1 = 0
+idx2 = 1
+for nn in range(num_of_line):
+    t_idx = nn % 2
+    tmp[t_idx]=(list(map(int, sys.stdin.readline().split())))
 
-a_line = []
-b_line = []
-a_delay = [0]
-b_delay = [0]
-number_of_line = int(sys.stdin.readline().rstrip())
-
-for n in range(number_of_line):
-    tmp = list(map(int, sys.stdin.readline().split(' ')))
-    if len(tmp) == 2:
-        a_line.append(tmp[0])
-        b_line.append(tmp[1])
-        a_delay.append(0)
-        b_delay.append(0)
+    if nn < 1:
+        continue
     else:
-        a_line.append(tmp[0])
-        b_line.append(tmp[1])
-        a_delay.append(tmp[2])
-        b_delay.append(tmp[3])
+        cmp = [0] * 4
 
-def solution(num_of_line, a_line, b_line, a_delay, b_delay):
-    ans = 0
+        cmp[0] = tmp[idx1][0]+tmp[idx2][0]            # An -> An+1
+        cmp[1] = tmp[idx1][1]+tmp[idx1][3]+tmp[idx2][0]    # Bn -> tn -> An+1
+        cmp[2] = tmp[idx1][1]+tmp[idx2][1]            # bn -> Bn+1
+        cmp[3] = tmp[idx1][0]+tmp[idx1][2]+tmp[idx2][1]    # An -> tn -> Bn+1
+        idx1 = ~idx1
+        idx2 = ~idx2
 
-    for n in range(num_of_line-1):
-        # a라인에서만 생산했을 경우 / n 시점에는 a라인을 이용하고 n+1 시점에는 b라인을 이용하는 경우를 비교
-        timea = min(a_line[n]+a_line[n+1], a_line[n]+a_delay[n+1]+b_line[n+1])
-        # b라인에서만 생산했을 경우 / n 시점에는 b라인을 이용하고 n+1 시점에는 a라인을 이용하는 경우를 비교
-        timeb = min(b_line[n]+b_line[n+1], b_line[n]+b_delay[n+1]+a_line[n+1])
+        if min_idx != -1:
+            if min_idx < 2:
+                cmp[1] = 0
+                cmp[2] = 0
+            else:
+                cmp[0] = 0
+                cmp[3] = 0
 
-        # 공장 라인이 3개 이상인 경우 : 0이 아닌 n 시점에서 n-1 시점에서의 라인 생산시간이 중복 가산되기 때문에 이 값을 빼줌
-        if timea > timeb:
-            ans += timeb
-            if n != 0:
-                ans -= b_line[n]
-        else:
-            ans += timea
-            if n != 0:
-                ans -= a_line[n]
+        for c in range(len(cmp)):
+            if cmp[c] != 0 and cmp[c] < min:
+                min = cmp[c]
+                min_idx = c
+        ans += min
+
+
+print(ans)
+'''
+def solution():
+    line = int(sys.stdin.readline().rstrip())
+    ta = 0
+    tb = 0
+    preva = 0
+    prevb = 0
+    for _ in range(line-1):
+        tmp = list(map(int, sys.stdin.readline().split()))
+        ta = min(tmp[0]+preva, tmp[1]+tmp[3]+prevb)
+        tb = min(tmp[1]+prevb, tmp[0]+tmp[2]+preva)
+        preva = ta
+        prevb = tb
+    tmp = list(map(int, sys.stdin.readline().split()))
+    ta += tmp[0]
+    tb += tmp[1]
+
+    ans = min(ta, tb)
     print(ans)
 
-solution(number_of_line, a_line, b_line, a_delay, b_delay)
+solution()
