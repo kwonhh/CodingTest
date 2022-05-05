@@ -2,6 +2,7 @@
 
 import sys
 
+
 def loop_solution(iter):
     prev = 2
     start = 3
