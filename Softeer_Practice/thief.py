@@ -85,13 +85,16 @@ tmp = [0 for _ in range(N+1)]
 for _ in range(N):
     m, price = list(map(int, sys.stdin.readline().split()))  # m 보석의 무게, price 보석의 무게 당 가치
     jw.append([price, m])
-print(jw)
+
 for j in range(1,len(jw)+1):
     tmp[jw[j-1][0]] += jw[j-1][1]
 ans = 0
-for t in tmp:
-    ans += t[0]*t[1]
-    W -= t[1]
+for t in range(len(tmp)-1, -1, -1):
+    if tmp[t] < W:
+        ans += t*tmp[t]
+    else:
+        ans += t*W
+    W -= tmp[t]
     if W <= 0:
         break
 print(ans)
