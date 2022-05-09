@@ -1,6 +1,7 @@
 # https://softeer.ai/practice/info.do?eventIdx=1&psProblemId=628
 
 import sys
+
 def solution(start, end, service):
     service.sort()
     ans = 0
