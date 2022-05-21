@@ -31,16 +31,19 @@ for aa in antatica:
     alp[ord(aa) - 96] += 1
 
 i_list = []
+vis = []
 ans = 0
 cnt = 5
 for _ in range(n):
     tmp = sys.stdin.readline()
     i_list.append(tmp[4:-5])
-list(set(i_list))
 i_list.sort()
 #print(i_list)
 
 def solution(alp, word, ref):
+    if word in vis:
+        return 0
+    vis.append(word)
     cnt_tmp = 0
     global cnt
     for w in word:
