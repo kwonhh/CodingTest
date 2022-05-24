@@ -1,65 +1,42 @@
 #https://www.acmicpc.net/problem/1062
+#문제의 의도를 잘 모르겠음...;
 import sys
-
-
-def solution2(alp, word, ref, vis, word_):
-    if word_ in vis:
-        return 0
-    vis.append(word_)
-    global cnt
-    if cnt > ref:
-        return 0
-    cnt_t = 0
-    for w in word:
-        if alp[ord(w)-96] == 0:
-            cnt_t += 1
-        alp[ord(w)-96] += 1
-
-    if cnt + cnt_t <= ref:
-        cnt += cnt_t
-        return 1
-    else:
-        for w in word:
-            alp[ord(w) - 96] -= 1
-        return 0
+from itertools import combinations
+default_list = ['a', 'c', 'i', 'n', 't']
 
 n, k = list(map(int, sys.stdin.readline().split()))
-antatica = ['a', 'n', 't', 'a', 't', 'i', 'c', 'a']
 alp = [0  for _ in range(27)]
-
+antatica = ['a', 'n', 't', 'a', 't', 'i', 'c', 'a']
 for aa in antatica:
     alp[ord(aa) - 96] += 1
-
-i_list = []
-vis = []
-ans = 0
 cnt = 5
+
+input_list = []
+ans = 0
+
 for _ in range(n):
-    tmp = sys.stdin.readline()
-    i_list.append(tmp[4:-5])
-i_list.sort()
-#print(i_list)
+    tmp = list(sys.stdin.readline().rstrip())
+    input_list.append(tmp[4:-4])
 
 def solution(alp, word, ref):
-    if word in vis:
-        return 0
-    vis.append(word)
     cnt_tmp = 0
     global cnt
-    for w in word:
-        if alp[ord(w)-96] == 0:
+    for ww in word:
+        if alp[ord(ww)-96] == 0:
             cnt_tmp += 1
+        alp[ord(ww)-96] += 1
     if cnt + cnt_tmp <= ref:
         cnt += cnt_tmp
-        for w in word:
-            alp[ord(w)-96] += 1
         return 1
     else:
+        for ww in word:
+            alp[ord(ww)-96] -= 1
         return 0
 
-if k < 5:
-    print(0)
-else:
-    for i in i_list:
-        ans += solution(alp, i, k)
-    print(ans)
+for i in input_list:
+    ans += solution(alp, i, k)
+print(ans)
+
+
+
+
