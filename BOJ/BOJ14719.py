@@ -22,6 +22,7 @@ def find_wall(wall, idx, width):
         idx_r += 1
     return l_flg & r_flg
 
+
 ans = 0
 while h > 0:
     for ww in range(w):
