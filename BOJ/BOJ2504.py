@@ -60,7 +60,6 @@ def solution(inp):
         ans += ss
     print(ans)
 
-
 solution(inp)
 
 
