@@ -1,6 +1,7 @@
 #https://www.acmicpc.net/problem/2501
 import sys
 
+
 n, m = list(map(int, sys.stdin.readline().split()))
 lst = []
 
