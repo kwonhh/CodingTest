@@ -16,7 +16,7 @@ while idx_h < n:
 #print("h",holes)
 idx_p = 0
 ans = 0
-while idx_p != k:
+while idx_p != k :
     # 시도3
     # 현재부터 다음 사용까지의 거리가 가장 먼 코드를 우선으로 뽑도록 함
     # 아래 else문에서 if holes[idx_h] == pp 일 경우 그냥 break 하기 떄문에
