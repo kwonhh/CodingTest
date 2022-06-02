@@ -1,4 +1,5 @@
 # https://www.acmicpc.net/problem/1197
+
 import sys
 
 n_node, n_edge = map(int, sys.stdin.readline().split())
