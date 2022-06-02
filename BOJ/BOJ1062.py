@@ -1,5 +1,5 @@
 #https://www.acmicpc.net/problem/1062
-#문제의 의도를 잘 모르겠음...;
+#문제의 의도를 잘 모르겠음... ;
 import sys
 from itertools import combinations
 default_list = ['a', 'c', 'i', 'n', 't']
