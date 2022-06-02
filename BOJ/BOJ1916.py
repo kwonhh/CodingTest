@@ -4,6 +4,7 @@ INF = int(1e9)
 graph = []
 n = int(sys.stdin.readline().rstrip())       # 도시의 갯수
 m = int(sys.stdin.readline().rstrip())       # 버스의 갯수
+
 for _ in range(m):
     departure, arrival, cost = map(int, sys.stdin.readline().split())
     graph.append((departure, arrival, cost))
