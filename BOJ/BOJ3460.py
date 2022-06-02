@@ -17,7 +17,6 @@ for _ in range(numTest):
     ans = []
     idx = 0
 
-
     make_bin(num, idx)
 
     for a in ans:
