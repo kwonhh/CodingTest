@@ -2,6 +2,7 @@
 p = input().rstrip()
 s = input().rstrip()
 
+
 pi = [0] * (len(s))
 i = 0
 j = 1
