@@ -28,4 +28,4 @@ for _ in range(T):
         print(solution(n))
     else:
         print(sum(dp[n]))
-    tmp = n
+    tmp = max(n, tmp)
